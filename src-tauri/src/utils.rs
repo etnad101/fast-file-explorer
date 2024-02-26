@@ -1,9 +1,13 @@
-use std::fs;
+use std::{fs, io::Error};
 
-pub fn get_files(dir: &str) -> Vec<String> {
-    fs::read_dir(dir)
-        .unwrap()
-        .into_iter()
-        .map(|entry| String::from(entry.unwrap().path().to_str().unwrap()))
-        .collect()
+// when error == not a directory, make explorer read file instead of dir
+
+pub fn get_files(dir: &str) -> Result<Vec<String>, Error> {
+    match fs::read_dir(dir) {
+        Ok(files) => Ok(files
+            .into_iter()
+            .map(|entry| String::from(entry.unwrap().path().to_str().unwrap()))
+            .collect()),
+        Err(e) => Err(e),
+    }
 }

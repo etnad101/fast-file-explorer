@@ -2,11 +2,15 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod utils;
+
 use utils::get_files;
 
 #[tauri::command]
 fn get_dir(dir: &str) -> Vec<String> {
-    get_files(dir)
+    match get_files(dir) {
+        Ok(files) => files,
+        Err(e) => vec![e.to_string()],
+    }
 }
 
 fn main() {
