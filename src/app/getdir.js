@@ -17,7 +17,7 @@ export default function GetDir({ dir, depth, handleClick }) {
       <div className="text-center items-center">
         {files.map((file, i) => (
           <p
-            className="hover:underline hover:bg-green-400 border border-gray-500 rounded-md w-64"
+            className="hover:underline hover:bg-green-400 hover:shadow-gray-800 border border-gray-500 rounded-md w-64"
             key={i}
             onClick={() => handleClick(files[i][depth])}
           >

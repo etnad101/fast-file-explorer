@@ -17,28 +17,30 @@ export default function Home() {
     setDepth(depth + 1);
     let path = dir + next + "\\";
     setDir(path);
-  }
+  };
 
   const goToDrive = (drive) => {
     setDepth(1);
-    setDir(drive)
-  }
+    setDir(drive);
+  };
 
   return (
-    <main className="h-[100vw] bg-sky-500">
-      <div className="flex-row text-center">
-        <h1>Current path: {dir}</h1>
-        <div>
-          <button onClick={() => goToDrive(root)}>Root</button>
-          <button className="pl-5" onClick={() => goToDrive(tempDrive1)}>
-            D:\\
-          </button>
-          <button className="pl-5" onClick={() => goToDrive(tempDrive2)}>
-            E:\\
-          </button>
+    <main>
+      <div className="bg-blue-400 h-[100vh]">
+        <div className="flex-row text-center">
+          <h1>Current path: {dir}</h1>
+          <div>
+            <button onClick={() => goToDrive(root)}>Root</button>
+            <button className="pl-5" onClick={() => goToDrive(tempDrive1)}>
+              D:\\
+            </button>
+            <button className="pl-5" onClick={() => goToDrive(tempDrive2)}>
+              E:\\
+            </button>
+          </div>
         </div>
+        <GetDir dir={dir} depth={depth} handleClick={nextFile} />
       </div>
-      <GetDir dir={dir} depth={depth} handleClick={nextFile} />
     </main>
   );
 }
