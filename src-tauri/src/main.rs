@@ -6,10 +6,10 @@ mod utils;
 use utils::get_files;
 
 #[tauri::command]
-fn get_dir(dir: &str) -> Vec<String> {
+fn get_dir(dir: &str) -> Vec<Vec<String>> {
     match get_files(dir) {
         Ok(files) => files,
-        Err(e) => vec![e.to_string()],
+        Err(e) => vec![vec![e.to_string()]],
     }
 }
 
